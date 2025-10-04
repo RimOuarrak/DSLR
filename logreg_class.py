@@ -1,6 +1,8 @@
 import csv
-import sys
+from colorama import init, Fore, Style
 import numpy as np
+
+init(autoreset=True)
 
 class LogisticRegression():
 	def __init__(self, learning_rate=0.01, epochs=1000, batch_size=None): # epochs mean the number of iterations, batch_size means the number of samples in each batch None means normal gradient descent:
@@ -35,6 +37,15 @@ class LogisticRegression():
 		n_samples, n_features = X.shape
 		self.weights = np.zeros((self.n_classes, n_features))
 
+		if self.batch_size is None:
+			opt_type = Fore.CYAN + "Full-Batch Gradient Descent (BGD)" + Style.RESET_ALL
+		elif self.batch_size == 1:
+			opt_type = Fore.MAGENTA + "Stochastic Gradient Descent (SGD)" + Style.RESET_ALL
+		else:
+			opt_type = Fore.YELLOW + f"Mini-Batch Gradient Descent (MBGD, batch_size={self.batch_size})" + Style.RESET_ALL
+
+		print(f"Training used {opt_type} for {self.epochs} epochs with learning rate {self.learning_rate}")
+
 		for class_idx in range(self.n_classes):
 			y_binary = (y_encoded == class_idx).astype(int)
 			w = np.zeros(n_features)
@@ -46,6 +57,7 @@ class LogisticRegression():
 					errors = predictions - y_binary
 					gradient = np.dot(X.T, errors) / n_samples
 					w -= self.learning_rate * gradient
+
 				else:
 					# Mini-batch gradient descent
 					for start in range(0, n_samples, self.batch_size):
@@ -56,8 +68,10 @@ class LogisticRegression():
 						errors = predictions - y_batch
 						gradient = np.dot(X_batch.T, errors) / len(y_batch)
 						w -= self.learning_rate * gradient
+
 			self.weights[class_idx] = w
-	
+		print(Fore.GREEN + "\nTraining complete! 🎉 Weights @ weights.csv" + Style.RESET_ALL)
+
 	def save_weights(self, filename):
 		with open(filename, 'w', newline='') as f:
 			writer = csv.writer(f)
