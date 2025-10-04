@@ -27,13 +27,13 @@ with open(dataset_file, 'r') as f:
 			continue
 
 # ---------> Using Full Batch GD Aka normal GD
-model = LogisticRegression(learning_rate=0.1, epochs=1000)
+# model = LogisticRegression(learning_rate=0.1, epochs=1000)
 
 # ---------> Using SGD
 # model = LogisticRegression(learning_rate=0.1, epochs=1000, batch_size=1)
 
 # ---------> Using Mini-batch GD
-# model = LogisticRegression(learning_rate=0.1, epochs=1000, batch_size=32)
+model = LogisticRegression(learning_rate=0.1, epochs=1000, batch_size=32)
 
 model.fit(X, y)
 model.save_weights("weights.csv")
