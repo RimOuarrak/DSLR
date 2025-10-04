@@ -21,7 +21,7 @@ class LogisticRegression():
 		X = np.array(X, dtype=float)
 		X_min = X.min(axis=0)
 		X_max = X.max(axis=0)
-		X = (X - X_min) / (X_max - X_min) # Normalize features
+		X = (X - X_min) / (X_max - X_min + 1e-8) # Normalize features
 		bias = np.ones((X.shape[0], 1))
 		X = np.hstack((bias, X))
 		return X
@@ -50,7 +50,7 @@ class LogisticRegression():
 			y_binary = (y_encoded == class_idx).astype(int)
 			w = np.zeros(n_features)
 		
-			for epoch in range(self.epochs):
+			for _ in range(self.epochs):
 				if self.batch_size is None:
 					# Full batch gradient descent
 					predictions = self._sigmoid(np.dot(X, w))
