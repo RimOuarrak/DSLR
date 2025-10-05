@@ -26,3 +26,4 @@ pd.plotting.scatter_matrix(
 )
 plt.suptitle("Pair Plot of Numerical Features by House")
 plt.show()
+plt.close()

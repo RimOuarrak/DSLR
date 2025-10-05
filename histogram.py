@@ -46,3 +46,4 @@ for course in courses:
     plt.ylabel("Count")
     plt.legend()
     plt.show()
+    plt.close()

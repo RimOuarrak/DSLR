@@ -31,3 +31,4 @@ for i in range(len(courses)):
         plt.ylabel(course_y)
         plt.legend()
         plt.show()
+        plt.close()
