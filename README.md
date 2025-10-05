@@ -181,7 +181,7 @@ Each revealing hidden relationships between Hogwarts courses and houses 🏰
 
 ## 💫 Credits
 
-👩‍💻 **Created by:** [Amine](https://github.com/mtourham)&  [Rim](https://github.com/RimOuarrak)
+👩‍💻 **Created by:** [Amine](https://github.com/mtourham) &  [Rim](https://github.com/RimOuarrak)
 🧙‍♂️ Inspired by Hogwarts, Yann LeCun, and the magic of Machine Learning.  
 
 > “Muggle tools, wizard results.” ⚡  
